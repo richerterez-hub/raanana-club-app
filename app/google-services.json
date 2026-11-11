@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70324955673",
+    "project_id": "erez-app-s",
+    "storage_bucket": "erez-app-s.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70324955673:android:f34ab6d7e2815fbed29888",
+        "android_client_info": {
+          "package_name": "Erez.base.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5NUCuf-CqVQUlhJSAzeNMmF6hJT0GT0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
