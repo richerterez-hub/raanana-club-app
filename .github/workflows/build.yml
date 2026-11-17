@@ -1,3 +1,4 @@
+
 name: Build APK
 
 on:
@@ -27,18 +28,21 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
 
+      - name: Prepare APK file
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/raanana-club.apk
+
       - name: Upload APK (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: raanana-club-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: dist/raanana-club.apk
 
-      - name: Publish APK into repo (apk-output branch)
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          mkdir -p dist
-          cp app/build/outputs/apk/debug/app-debug.apk dist/raanana-club.apk
-          git add -f dist/raanana-club.apk
-          git commit -m "APK build output [skip ci]"
-          git push origin HEAD:apk-output --force
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Build ${{ github.run_number }}
+          files: dist/raanana-club.apk
+          make_latest: true
