@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String START_URL = "https://raanana.club/";
@@ -53,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         askNotificationPermission();
+
+        // Subscribe to the "all" topic so a broadcast test can be sent from the
+        // Firebase Console (Cloud Messaging) without needing this device's token.
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
     }
 
     private void askNotificationPermission() {
